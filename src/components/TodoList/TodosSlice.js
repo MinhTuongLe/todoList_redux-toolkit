@@ -10,13 +10,20 @@ export default createSlice({
   initialState: getInitialStateFromLocalStorage(),
   reducers: {
     addToDo: (state, action) => {
-      state.push(action.payload);
+      state.unshift(action.payload);
       localStorage.setItem("todoList", JSON.stringify(state));
     },
     toggleStatus: (state, action) => {
       const currentTodo = state.find((todo) => todo.id === action.payload);
       if (currentTodo) {
         currentTodo.completed = !currentTodo.completed;
+        localStorage.setItem("todoList", JSON.stringify(state));
+      }
+    },
+    removeToDo: (state, action) => {
+      const index = state.findIndex((todo) => todo.id === action.payload);
+      if (index !== -1) {
+        state.splice(index, 1);
         localStorage.setItem("todoList", JSON.stringify(state));
       }
     },

@@ -1,3 +1,10 @@
 .ant-select-multiple .ant-select-selection-item {
   height: 27px;
 }
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

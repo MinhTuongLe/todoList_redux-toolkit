@@ -1,12 +1,6 @@
 import { Col, Row, Input, Typography, Radio, Select, Tag } from "antd";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-// import {
-//   searchFilterChange,
-//   statusFilterChange,
-//   prioritiesFilterChange,
-// } from "../../redux/actions";
-
 import filtersSLice from './FiltersSlice'
 
 export default function Filters() {
@@ -15,6 +9,7 @@ export default function Filters() {
   const [status, setStatus] = useState("All");
   const [priorities, setPriorities] = useState([]);
   const dispatch = useDispatch();
+
   const handleSearchTextChange = (e) => {
     setSearchText(e.target.value);
     dispatch(filtersSLice.actions.searchFilterChange(e.target.value));
@@ -27,8 +22,9 @@ export default function Filters() {
     setPriorities(value);
     dispatch(filtersSLice.actions.prioritiesFilterChange(value));
   };
+  
   return (
-    <Row justify="center">
+    <Row justify="center" style={{height:"20vh"}}>
       <Col span={24}>
         <Typography.Paragraph
           style={{ fontWeight: "bold", marginBottom: 3, marginTop: 10 }}

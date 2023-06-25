@@ -1,4 +1,4 @@
-import { Row, Tag, Checkbox } from "antd";
+import { Row, Tag, Checkbox, Button } from "antd";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import todoListSlice from "../TodoList/TodosSlice";
@@ -18,6 +18,10 @@ export default function Todo({ name, priority, completed, id }) {
     dispatch(todoListSlice.actions.toggleStatus(id));
   };
 
+  const handleRemoveButtonClick = () => {
+    dispatch(todoListSlice.actions.removeToDo(id));
+  };
+
   return (
     <Row
       justify="space-between"
@@ -32,6 +36,13 @@ export default function Todo({ name, priority, completed, id }) {
       <Tag color={priorityColorMapping[priority]} style={{ margin: 0 }}>
         {priority}
       </Tag>
+      <Button
+        type="primary"
+        style={{ backgroundColor: "orangered" }}
+        onClick={handleRemoveButtonClick}
+      >
+        Remove
+      </Button>
     </Row>
   );
 }
